@@ -12,16 +12,19 @@ class Program
         
         string enderecoArquivo = "contas.txt";
         
-        var streamArquivo =  new FileStream(enderecoArquivo, FileMode.Open,FileAccess.Read);
         
-        byte[] buffer = new byte[1024]; // Buffer de 1KB
-        
-        while(numeroDeBytesLidos != 0)
+        using(var streamArquivo = new FileStream(enderecoArquivo, FileMode.Open,FileAccess.Read))
         {
-            numeroDeBytesLidos = streamArquivo.Read(buffer, 0, 1024);
-            PrintBuffer(buffer);
+            byte[] buffer = new byte[1024]; // Buffer de 1KB
+            
+            while(numeroDeBytesLidos != 0)
+            {
+                numeroDeBytesLidos = streamArquivo.Read(buffer, 0, 1024);
+                PrintBuffer(buffer);
+            }
+            
         }
-        
+
         Console.ReadLine();
     }
     
