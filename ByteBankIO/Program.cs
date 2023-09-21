@@ -20,22 +20,23 @@ class Program
             while(numeroDeBytesLidos != 0)
             {
                 numeroDeBytesLidos = streamArquivo.Read(buffer, 0, 1024);
-                PrintBuffer(buffer);
+                
+                PrintBuffer(buffer, numeroDeBytesLidos);
             }
             
 
             streamArquivo.Close();
-
         }
 
         Console.ReadLine();
     }
     
     
-    static void PrintBuffer(byte[] buffer)
+    static void PrintBuffer(byte[] buffer, int bytesLidos)
     {
         UTF8Encoding utf8 =  new UTF8Encoding();
-        string text  =  utf8.GetString(buffer);
+        string text  =  utf8.GetString(buffer, 0, bytesLidos);
+
         
         Console.Write(text);
     }
