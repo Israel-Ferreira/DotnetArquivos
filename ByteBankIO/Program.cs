@@ -1,5 +1,4 @@
-﻿using System.Text;
-using ByteBankIO;
+﻿using ByteBankIO.ReadFile;
 
 namespace ByteBankIO;
 
@@ -8,36 +7,10 @@ class Program
     static void Main(string[] args)
     {
         
-        var numeroDeBytesLidos = -1;
-        
+        var readFileStream = new ReadFileStream();
         string enderecoArquivo = "contas.txt";
         
-        
-        using(var streamArquivo = new FileStream(enderecoArquivo, FileMode.Open,FileAccess.Read))
-        {
-            byte[] buffer = new byte[1024]; // Buffer de 1KB
-            
-            while(numeroDeBytesLidos != 0)
-            {
-                numeroDeBytesLidos = streamArquivo.Read(buffer, 0, 1024);
-                
-                PrintBuffer(buffer, numeroDeBytesLidos);
-            }
-            
-
-            streamArquivo.Close();
-        }
-
-        Console.ReadLine();
+        readFileStream.ReadFile(enderecoArquivo);
     }
     
-    
-    static void PrintBuffer(byte[] buffer, int bytesLidos)
-    {
-        UTF8Encoding utf8 =  new UTF8Encoding();
-        string text  =  utf8.GetString(buffer, 0, bytesLidos);
-
-        
-        Console.Write(text);
-    }
 }
