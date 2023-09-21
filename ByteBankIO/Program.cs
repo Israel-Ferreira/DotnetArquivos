@@ -23,6 +23,9 @@ class Program
                 PrintBuffer(buffer);
             }
             
+
+            streamArquivo.Close();
+
         }
 
         Console.ReadLine();
